@@ -71,6 +71,15 @@
         function atualizarTela() {
             quantidade.innerText = dados.quantidade;
             total.innerText = dados.quantidade * dados.preco;
+
+            if(dados.quantidade <= 0) {
+                dados.quantidade = 0;
+                quantidade.innerText = dados.quantidade;
+                total.innerText = dados.quantidade;
+
+            }
+
+            console.log(dados.quantidade);
         }
 
         adicionar.addEventListener('click', adicionarPeca);
