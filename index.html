@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="./vue.js"></script>
+    <title>Project VueJs</title>
+</head>
+
+<body>
+
+    <h1><u>Com Vue</u></h1>
+
+    <div id="app">
+        <h2>Calças - R$ <span>{{preco}}</span></h2>
+        <button @click="quantidade++">Adicionar</button>
+        <button @click="quantidade--">Diminuir</button>
+        <p><span>{{quantidade}}</span></p>
+        <h1>Total = <span>{{quantidade * preco}}</span></h1>
+    </div>
+
+    <hr>
+
+    <h1><u>Sem Vue</u></h1>
+
+    <div>
+        <h2>Camisas - R$ <span class="preco"></span></h2>
+        <button class="adicionar">Adicionar</button>
+        <button class="diminuir">Diminuir</button>
+        <p><span class="quantidade"></span></p>
+        <h1>Total = <span class="total"></span></h1>
+    </div>
+
+    <script>
+
+        const vm = new Vue({
+            el: "#app",
+            data: {
+                preco: 89,
+                quantidade: 0
+            }
+        });
+
+        let preco = document.querySelector('.preco');
+        let total = document.querySelector('.total');
+        let quantidade = document.querySelector('.quantidade');
+        let diminuir = document.querySelector('.diminuir');
+        let adicionar = document.querySelector('.adicionar');
+
+        let dados = {
+            preco: 39,
+            quantidade: 0,
+        }
+
+        preco.innerText = dados.preco;
+        quantidade.innerText = dados.quantidade;
+        total.innerText = dados.preco * dados.quantidade;
+
+        function adicionarPeca() {
+            dados.quantidade++;
+            atualizarTela();
+        }
+
+        function diminuirPeca() {
+            dados.quantidade--;
+            atualizarTela();
+        }
+
+        function atualizarTela() {
+            quantidade.innerText = dados.quantidade;
+            total.innerText = dados.quantidade * dados.preco;
+        }
+
+        adicionar.addEventListener('click', adicionarPeca);
+        diminuir.addEventListener('click', diminuirPeca);
+    </script>
+</body>
+
+</html>
