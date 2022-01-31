@@ -8,41 +8,33 @@
     <title>Document</title>
 </head>
 <body>
-    <div id="app">
-        {{nomeP}}
+    <div id="app1">
+        {{ferramenta}}
+    </div>
+    <div id="app2">
+        {{instrumento}}
     </div>
 
     <script>
-        function VueClone(options){
-            this.options = options;
-            this.el = document.querySelector(options.el);
-            this.data = options.data;
-        }
+        // Crie uma tag com id app e inicie uma instancia de Vue
 
-        const vClone = new VueClone({
-            el: "#app",
+        const vm1 = new Vue({
+            el: "#app1",
             data: {
-                nome: 'junior',
-                idade: 26
+                ferramenta: "Martelo",
             }
-        });
+        })
 
-        const vm = new Vue({
-            el: "#app",
+        const vm2 = new Vue({
+            el: "#app2",
             data: {
-                nome: "Rodrigo",
-                idade: 34
-            },
-            computed: {
-                nomeP(){
-                    setTimeout(() => {
-                        console.log(this.idade);
-                    }, 1000)
-                    return this.nome + ' Tem ' + this.idade + ' anos';
-                }
-                
+                ferramenta: vm1.ferramenta,
+                instrumento: "Guitarra",
             }
-        });
+        })
+
+        // Faça o HTML abaixo funcionar com Vue
     </script>
+
 </body>
 </html>
