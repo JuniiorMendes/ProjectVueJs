@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="./vue.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+
+        <button @click="colocarUrl(url)">Ver</button>
+        {{DataUrl.title}}
+        {{DataUrl.likes}}
+        {{DataUrl.id}}
+    </div>
+
+    <script>
+        const vm = new Vue({
+            el: "#app",
+            data: {
+                url: "http://fakeapi.jsonparseronline.com/posts",
+                DataUrl: "",
+            },
+            methods: {
+                async colocarUrl(url){
+                    const urlLocal = await fetch(url);
+                    const urlText = await urlLocal.json();
+                    // console.log(urlText[0]);
+                    this.DataUrl = urlText[0];
+                }
+            }
+        });
+
+    </script>
+</body>
+</html>
