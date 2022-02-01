@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../vue.js"></script>
+    <title>Document</title>
+    <style>
+        .vermelho {
+            color: red;
+            background: blue;
+        }
+        .azul {
+            color: blue;
+            background: red;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <button @click="ativar">Ativar</button>
+        <p :class="marketOne > marketTwo ? 'marketOne' : 'marketTwo'">corte</p>
+        <p :class="marketOne > marketTwo ? 'marketTwo' : 'marketOne'">pastel</p>
+    </div>
+    <script>
+        const vm = new Vue({
+            el: "#app",
+            data: {
+                marketOne: 2,
+                marketTwo: 3,
+                url: 'https://jsonplaceholder.typicode.com/users',
+            },
+            methods: {
+                puxarUrl(){
+                   const resUrl = fetch(this.url)
+                    .then(response => response.json())
+                    .then(body => {
+                        this.marketOne = body[0].name;
+                        this.marketTwo = body[1].name;
+                    })
+                },
+
+                ativar(){
+                    this.puxarUrl()
+                }
+            }
+        });
+        
+    </script>
+</body>
+</html>
