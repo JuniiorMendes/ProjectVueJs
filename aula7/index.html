@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../vue.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <h1>Produtos</h1>
+    <div id="app">
+        <h2>Bolsas: 
+            <button @click="retirarBolsa">-</button>
+            {{bolsas}}
+            <button @click.show="colocarBolsa">+</button>
+        </h2>
+
+        <p v-if="ver">Não será possivel adicionar mais itens</p>
+        <p v-else="ver"></p>
+        <p>Carrinho: {{total}} <button @click="retirarBolsa">-</button></p> 
+    </div>
+
+    <script>
+        const vm = new Vue({
+            el: "#app",
+            data: {
+                bolsas: 7,
+                total: 0,
+                ver: false,
+            },
+            methods: {
+                colocarBolsa(){
+                    this.bolsas--;
+                    this.total++;
+                    if(this.bolsas === 0){
+                        this.ver = true
+                        this.total = 7
+                    } else if(this.bolsas < 0){
+                        this.total = 7
+                        this.bolsas = 0
+                    } 
+                },
+                retirarBolsa(){
+                    this.bolsas++;
+                    this.total--;
+                    if(this.bolsas < 0){
+                        this.total = 7
+                    } else if(this.bolsas > 7){
+                        this.bolsas = 7
+                        this.total = 0
+                    } else if(this.bolsas === 1){
+                        this.ver = false
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+</html>
