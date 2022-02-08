@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../vue.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <!-- <li v-for="fruta in frutas.fruta2">{{fruta}}</li> -->
+        <li v-for="list in lists">{{list}}</li>
+        <button @click="adicionar">Adicionar</button>
+        <button @click="retirar">Remover</button>
+    </div>
+
+    <script>
+        const vm = new Vue({
+            el: "#app",
+            data: {
+                lists: ["item 1", "item 2", "item 3"]
+            },
+            methods: {
+                adicionar(){
+                    // this.lists.push("item 4")
+                    this.lists[0] = "Banana"
+                },
+                retirar(){
+                    this.lists.pop()
+                }
+            }
+        })
+    </script>
+</body>
+</html>
